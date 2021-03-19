@@ -53,6 +53,7 @@ function LandingContainer() {
 
   return (
     <Landing
+      loading={loading}
       searchInput={searchInput}
       handleSearchInput={handleSearchInput}
       handleSubmitSearch={handleSubmitSearch}
