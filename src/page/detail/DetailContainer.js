@@ -6,7 +6,7 @@ function DetailContainer({
     params: { id },
   },
 }) {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [movie, setMovie] = React.useState(null);
   const [error, setError] = React.useState(null);
   React.useEffect(() => {
@@ -24,7 +24,7 @@ function DetailContainer({
         if (res.data.Response === "True") {
           const {
             Title,
-            Image,
+            Poster,
             Year,
             Type,
             Released,
@@ -33,7 +33,7 @@ function DetailContainer({
           } = res.data;
           setMovie({
             Title,
-            Image,
+            Poster,
             Year,
             Type,
             Released,

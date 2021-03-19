@@ -4,19 +4,23 @@ import styled from "styled-components";
 
 function MovieCard({ movie }) {
   return (
-    <div>
+    <Wrapper>
+      <ImageWrapper url={movie.Poster} />
       <h1>{movie.Title}</h1>
       <h3>{movie.Year}</h3>
       <h3>{movie.Type}</h3>
-      <ImageWrapper url={movie.Poster} />
       <Link to={`/${movie.imdbID}`}>Click me</Link>
-    </div>
+    </Wrapper>
   );
 }
-
+const Wrapper = styled.div`
+  border: solid 1px red;
+  width: 300px;
+  height: 400px;
+`;
 const ImageWrapper = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 230px;
   background: url(${(props) => props.url});
   background-position: center;
   background-size: cover;
