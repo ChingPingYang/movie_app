@@ -8,6 +8,7 @@ function Landing({
   handleSubmitSearch,
   searchResult,
   totalPages,
+  handlePageChange,
 }) {
   return (
     <div>
@@ -21,9 +22,15 @@ function Landing({
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
       </div>
-      {/* {searchResult.Response === "False" && <h1> {searchResult.Error}</h1>} */}
-      {totalPages.length > 0 &&
-        totalPages.map((page) => <button key={page}>{page}</button>)}
+      {!searchResult && <h1>first time visit</h1>}
+      {searchResult?.Response === "False" && <h1> {searchResult.Error}</h1>}
+      {searchResult?.Response === "True" &&
+        totalPages.length > 0 &&
+        totalPages.map((page) => (
+          <button key={page} onClick={() => handlePageChange(page)}>
+            {page}
+          </button>
+        ))}
     </div>
   );
 }

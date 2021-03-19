@@ -10,12 +10,13 @@ const Global = createGlobalStyle`
         font-family: 'Rubik', sans-serif;
         letter-spacing: 0.07rem;
     }
-  
+    
     #root {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        align-items:center;
     }
 `;
 export default Global;

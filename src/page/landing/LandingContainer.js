@@ -14,7 +14,7 @@ function LandingContainer() {
   const [totalPages, setTotalPages] = React.useState([]);
   const isFirstRender = React.useRef(true);
 
-  const { fetchMovies, loading, data, error } = useFetchMovies();
+  const { fetchMovies, loading, data } = useFetchMovies();
 
   // First load, check localStorage for old data. Only run once.
   React.useEffect(() => {
@@ -23,20 +23,20 @@ function LandingContainer() {
     if (localInput) setSearchInput(localInput);
     if (localResult) {
       setSearchResult(localResult);
-      setTotalPages(genPageArray(localResult.totalResults));
+      if (localResult.totalResults)
+        setTotalPages(genPageArray(localResult.totalResults));
     }
   }, []);
 
   // Runs whenever new data is fetched, except first load.
   React.useEffect(() => {
-    // console.log(data);
-    // console.log(error);
     if (!isFirstRender.current) {
-      console.log("ch");
-      console.log(data);
+      console.log("Fetch data from server");
+      setSearchResult(data);
+      if (data.totalResults) setTotalPages(genPageArray(data.totalResults));
     }
     isFirstRender.current = false;
-  }, [data, error]);
+  }, [data]);
 
   const handleSearchInput = (e) => {
     setSearchInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -44,8 +44,11 @@ function LandingContainer() {
 
   const handleSubmitSearch = (e) => {
     e.preventDefault();
-    localStorage.setItem("search-input", JSON.stringify(searchInput));
     fetchMovies(searchInput);
+  };
+
+  const handlePageChange = (id) => {
+    fetchMovies({ ...searchInput, page: id });
   };
 
   return (
@@ -55,6 +58,7 @@ function LandingContainer() {
       handleSubmitSearch={handleSubmitSearch}
       searchResult={searchResult}
       totalPages={totalPages}
+      handlePageChange={handlePageChange}
     />
   );
 }
