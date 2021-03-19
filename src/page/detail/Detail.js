@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Detail({ loading, movie, error }) {
-  console.log(loading);
-  console.log(movie);
-  console.log(error);
   if (loading) return <h1>Loading page</h1>;
   if (error) return <h1>{error}</h1>;
   return (

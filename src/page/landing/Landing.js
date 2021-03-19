@@ -25,7 +25,7 @@ function Landing({
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
 
-        {!searchResult && <h1>first time visit</h1>}
+        {!searchResult && <h1>Search a movie</h1>}
 
         {searchResult?.Response === "False" && <h1> {searchResult.Error}</h1>}
       </CardWrapper>
@@ -33,7 +33,11 @@ function Landing({
         {searchResult?.Response === "True" &&
           totalPages.length > 0 &&
           totalPages.map((page) => (
-            <button key={page} onClick={() => handlePageChange(page)}>
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              style={{ padding: "10px", margin: "10px" }}
+            >
               {page}
             </button>
           ))}
@@ -43,7 +47,6 @@ function Landing({
 }
 
 const Wrapper = styled.main`
-  border: solid 1px red;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,7 +54,6 @@ const Wrapper = styled.main`
 `;
 
 const CardWrapper = styled.section`
-  border: solid 1px blue;
   width: 80%;
   display: flex;
   flex-wrap: wrap;

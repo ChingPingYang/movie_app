@@ -21,7 +21,7 @@ function useFetchMovies() {
             params: query,
             CancelToken: source.token,
           });
-          console.log(res);
+
           if (res.status === 200) {
             setData(res.data);
             localStorage.setItem("search-result", JSON.stringify(res.data));
