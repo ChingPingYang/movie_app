@@ -1,4 +1,4 @@
-# A sipmle APP built with OMDb api
+# A sipmle app built with OMDb api
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
